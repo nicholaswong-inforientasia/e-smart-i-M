@@ -53,7 +53,7 @@ export class Database {
       console.log(err);
     });
   }
-dfgfdgdfgfd
+
   sqliteQuery(sqlStmt) {
     return new Promise((resolve, reject) => {
 
