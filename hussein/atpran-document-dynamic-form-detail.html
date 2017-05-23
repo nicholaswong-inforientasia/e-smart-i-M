@@ -1,0 +1,148 @@
+<!--
+  Generated template for the ATPRANDocumentDynamicFormDetail page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{documentName}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+
+      <ion-col>
+        <!--start of reference photos-->
+
+        <ion-card *ngFor="let referencePhoto of referencePhotos">
+          <ion-card-title>
+            <ion-label>{{referencePhoto.photoattr}}</ion-label>
+          </ion-card-title>
+          <ion-card-content>
+
+            
+
+                  <img [src]="referencePhoto.photopath" (click)="showPhoto(referencePhotos)">
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card *ngIf="referencePhotos.length===0">
+          <ion-card-title>
+            <ion-label>{{noReferencePhotosText}}</ion-label>
+          </ion-card-title>
+        </ion-card>
+
+        <!--end of reference photos-->
+      </ion-col>
+
+
+      <ion-col>
+        <!--start of actual photos-->
+
+        <ion-card *ngFor="let actualPhoto of actualPhotos">
+          <ion-card-title>
+            <ion-input color="primary" type="text" [(ngModel)]="actualPhoto.photoattr" placeholder="Enter Caption"></ion-input>
+          </ion-card-title>
+          <ion-item>
+            <button ion-button item-left icon-left (click)="updateItem(actualPhoto)">Save</button>
+            <button ion-button item-right icon-left (click)="deleteItem(actualPhoto)"><ion-icon name="trash"></ion-icon></button>
+          </ion-item>
+          <ion-card-content>
+            <img [src]="actualPhoto.photopath" (click)="showPhoto(picture)">
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card *ngIf="actualPhotos.length===0">
+          <ion-card-title>
+            <ion-label>{{noActualPhotosText}}</ion-label>
+          </ion-card-title>
+        </ion-card>
+
+        <ion-item>
+          <ion-label color="primary">Caption:</ion-label>
+          <ion-input type="text" name="actualCaption" [(ngModel)]="actualCaption" placeholder="Enter Caption"></ion-input>
+        </ion-item>
+        <ion-item>
+          <button ion-button color="primary" icon-left (click)="getPicture()"><ion-icon name="camera"></ion-icon> Get a Photo</button>
+        </ion-item>
+
+
+
+
+        <!--end of actual photos grid  -->
+      </ion-col>
+
+
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngFor="let header of metaTable.header">
+
+    <ion-row *ngIf="header.startsWith('NE')">
+      <ion-col>
+        <button ion-button (click)="showReferencePhotos()">Reference Photos</button>
+      </ion-col>
+      <ion-col>
+        <button ion-button (click)="showActualPhotos()">Actual Photos</button>
+
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="header.startsWith('ST')">
+      <ion-col>
+        <p>{{metaTable.item[header]}}</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="header.startsWith('RS')">
+      <ion-col>
+        <p>{{header.split('_')[1]}}</p>
+      </ion-col>
+      <ion-col>
+        <ion-list name="{{header}}" radio-group [(ngModel)]="metaTable.item[header]">
+          <ion-item *ngFor="let rs of rsItems">
+            <ion-label>{{rs.data}}</ion-label>
+            <ion-radio [value]="rs.pmdefaultid" [disabled]="disableRSItem(rs.data)"></ion-radio>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="header.startsWith('NE')">
+      <ion-col color="primary">Item Check</ion-col>
+      <ion-col>
+        <ion-select name="{{header}}" [(ngModel)]="itemCheckArray" multiple="true" (ngModelChange)="itemCheckOnChange()">
+          <ion-option *ngFor="let ic of metaTable.item.NELIST.split(',')" [value]="ic">{{ic}}</ion-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="header.startsWith('UT')">
+      <ion-col color="primary">{{header.split('_')[1]}}</ion-col>
+      <ion-col>
+        <ion-input type="text" text-right placeholder="Enter {{header.split('_')[1]}}" name="{{header}}" [(ngModel)]="metaTable.item[header]"></ion-input>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+  <ion-item>
+    <button ion-button item-right (click)="savePage()">Save</button>
+  </ion-item>
+
+  <ion-grid *ngFor="let header of metaTable.header">
+    <ion-row *ngIf="header.startsWith('NE')">
+      <ion-item *ngFor="let details of punchListDetails" (click)="selectItem(details)">
+        {{details.OpenIssue}} - {{details.OpenIssueDesc}}
+        <ion-icon name="arrow-dropright" item-right></ion-icon>
+      </ion-item>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
