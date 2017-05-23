@@ -1,0 +1,41 @@
+<!--
+  Generated template for the BOMActualConfigAdd page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Add New Config</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-item>
+    <ion-label style="font-weight: bold">
+      Select New Config for {{networkElement}}
+    </ion-label>
+  </ion-item>
+
+  <ion-searchbar color="primary" (ionInput)="getItems($event)"></ion-searchbar>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col width-80 style="font-weight: bold">Level 2 | PO No.</ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+    <ion-row *ngFor="let actualConfigSearch of actualConfigSearchList" (click)="selectItem(actualConfigSearch)">
+      <ion-col width-80>
+        <p>{{actualConfigSearch.level2desc}} | {{actualConfigSearch.pono}}</p>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-icon item-right color="primary" name="arrow-dropright"></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,81 @@
+<!--
+  Generated template for the BOMActualExtraMaterialDetail page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Extra Material Detail</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-item>
+    <ion-label style="font-weight: bold">
+      {{extraMaterialDetail.materialid}}
+      <p>{{extraMaterialDetail.mname}}</p>
+    </ion-label>
+  </ion-item>
+
+  <ion-card>
+    <ion-item>
+      <ion-label>Plan Qty</ion-label>
+      <ion-label text-right>{{extraMaterialDetail.planqty}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary">Reused Qty</ion-label>
+      <ion-input type="text" text-right placeholder="Enter Reused Qty" name="reusedqty" [(ngModel)]="extraMaterialDetail.reusedqty"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary">New Qty</ion-label>
+      <ion-input type="text" text-right placeholder="Enter New Qty" name="newqty" [(ngModel)]="extraMaterialDetail.newqty"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Delta</ion-label>
+      <ion-label text-right>{{extraMaterialDetail.newqty - extraMaterialDetail.planqty}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Serial Number</ion-label>
+      <button ion-button item-right icon-left (click)="selectItem(extraMaterialDetail)"><ion-icon name="barcode"></ion-icon>{{extraMaterialDetail.serialno[0]}}</button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary">Reference Type</ion-label>
+    </ion-item>
+    <ion-list name="refnotype" radio-group [(ngModel)]="extraMaterialDetail.refnotype">
+      <ion-item>
+        <ion-label>PO</ion-label>
+        <ion-radio value="PO"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>CR</ion-label>
+        <ion-radio value="CR"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Others</ion-label>
+        <ion-radio value="Others"></ion-radio>
+      </ion-item>
+    </ion-list>
+
+    <ion-item>
+      <ion-label color="primary">Reference No</ion-label>
+      <ion-input type="text" text-right placeholder="Enter Reference No" name="refno" [(ngModel)]="extraMaterialDetail.refno"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary">Remarks</ion-label>
+      <ion-input type="text" text-right placeholder="Enter Remarks" name="remarks" [(ngModel)]="extraMaterialDetail.remarks"></ion-input>
+    </ion-item>
+
+    <button ion-button item-right (click)="saveBOMActualExtraMaterialDetail()">Save</button>
+
+  </ion-card>
+</ion-content>

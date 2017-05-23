@@ -1,0 +1,45 @@
+<!--
+  Generated template for the ATPRANDocumentDynamicFormDetailActualPhoto page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Actual Photos</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <ion-card *ngFor="let actualPhoto of actualPhotos">
+    <ion-card-title>
+      <ion-input color="primary" type="text" [(ngModel)]="actualPhoto.photoattr" placeholder="Enter Caption"></ion-input>
+    </ion-card-title>
+    <ion-item>
+      <button ion-button item-left icon-left (click)="updateItem(actualPhoto)">Save</button>
+      <button ion-button item-right icon-left (click)="deleteItem(actualPhoto)"><ion-icon name="trash"></ion-icon></button>
+    </ion-item>
+    <ion-card-content>
+      <img [src]="actualPhoto.photopath">
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="actualPhotos.length===0">
+    <ion-card-title>
+      <ion-label>{{noActualPhotosText}}</ion-label>
+    </ion-card-title>
+  </ion-card>
+
+  <ion-item>
+    <ion-label color="primary">Caption:</ion-label>
+    <ion-input type="text" name="actualCaption" [(ngModel)]="actualCaption" placeholder="Enter Caption"></ion-input>
+  </ion-item>
+  <ion-item>
+    <button ion-button color="primary" icon-left (click)="getPicture()"><ion-icon name="camera"></ion-icon> Get a Photo</button>
+  </ion-item>
+
+</ion-content>

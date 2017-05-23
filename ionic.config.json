@@ -1,0 +1,12 @@
+{
+  "name": "e-smart-i (M)",
+  "app_id": "",
+  "v2": true,
+  "typescript": true,
+  "proxies": [
+    {
+      "path": "/smartapi/query/",
+      "proxyUrl": "http://192.168.1.106:81/smartapi/query/"
+    }
+  ]
+}

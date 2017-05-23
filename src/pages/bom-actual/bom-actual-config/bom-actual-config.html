@@ -1,0 +1,54 @@
+<!--
+  Generated template for the BOMActualConfig page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Actual Config</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <ion-item>
+    <ion-label style="font-weight: bold">Select As Plan</ion-label>
+  </ion-item>
+
+  <ion-grid>
+    <ion-row *ngFor="let configAsPlan of bomActual.ActualConfigListAsPlan" (click)="selectItem(configAsPlan)">
+      <ion-col width-75>
+        <p>{{getActualConfigDescAsPlan(configAsPlan)}}</p>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-icon name="arrow-dropright" item-right></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-item>
+    <ion-label style="font-weight: bold">Select New</ion-label>
+    <button ion-button item-right icon-left (click)="searchActualConfig()"><ion-icon name="add"></ion-icon> Add</button>
+  </ion-item>
+
+  <ion-grid>
+    <ion-row *ngFor="let configNew of bomActual.ActualConfigListNew" (click)="selectItem(configNew)">
+      <ion-col width-75>
+        <p>{{getActualConfigDescNew(configNew)}}</p>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <button ion-button item-right icon-left (click)="deleteItem(configNew)"><ion-icon name="trash"></ion-icon></button>
+          <ion-icon name="arrow-dropright" item-right></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
