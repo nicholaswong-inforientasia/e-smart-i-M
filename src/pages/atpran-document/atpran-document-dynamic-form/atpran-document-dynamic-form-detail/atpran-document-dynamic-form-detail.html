@@ -25,10 +25,9 @@
             <ion-label>{{referencePhoto.photoattr}}</ion-label>
           </ion-card-title>
           <ion-card-content>
-
-            
-
-                  <img [src]="referencePhoto.photopath" (click)="showPhoto(referencePhotos)">
+            <ion-thumbnail>
+              <img [src]="referencePhoto.photopath" (click)="showPhoto(referencePhotos)">
+            </ion-thumbnail>
           </ion-card-content>
         </ion-card>
 
