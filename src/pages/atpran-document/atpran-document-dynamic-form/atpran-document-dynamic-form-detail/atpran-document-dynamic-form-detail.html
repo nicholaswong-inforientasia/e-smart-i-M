@@ -14,6 +14,73 @@
 
 
 <ion-content>
+  <ion-grid>
+    <ion-row>
+
+      <ion-col>
+        <!--start of reference photos-->
+
+        <ion-card *ngFor="let referencePhoto of referencePhotos">
+          <ion-card-title>
+            <ion-label>{{referencePhoto.photoattr}}</ion-label>
+          </ion-card-title>
+          <ion-card-content>
+
+            
+
+                  <img [src]="referencePhoto.photopath" (click)="showPhoto(referencePhotos)">
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card *ngIf="referencePhotos.length===0">
+          <ion-card-title>
+            <ion-label>{{noReferencePhotosText}}</ion-label>
+          </ion-card-title>
+        </ion-card>
+
+        <!--end of reference photos-->
+      </ion-col>
+
+
+      <ion-col>
+        <!--start of actual photos-->
+
+        <ion-card *ngFor="let actualPhoto of actualPhotos">
+          <ion-card-title>
+            <ion-input color="primary" type="text" [(ngModel)]="actualPhoto.photoattr" placeholder="Enter Caption"></ion-input>
+          </ion-card-title>
+          <ion-item>
+            <button ion-button item-left icon-left (click)="updateItem(actualPhoto)">Save</button>
+            <button ion-button item-right icon-left (click)="deleteItem(actualPhoto)"><ion-icon name="trash"></ion-icon></button>
+          </ion-item>
+          <ion-card-content>
+            <img [src]="actualPhoto.photopath" (click)="showPhoto(picture)">
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card *ngIf="actualPhotos.length===0">
+          <ion-card-title>
+            <ion-label>{{noActualPhotosText}}</ion-label>
+          </ion-card-title>
+        </ion-card>
+
+        <ion-item>
+          <ion-label color="primary">Caption:</ion-label>
+          <ion-input type="text" name="actualCaption" [(ngModel)]="actualCaption" placeholder="Enter Caption"></ion-input>
+        </ion-item>
+        <ion-item>
+          <button ion-button color="primary" icon-left (click)="getPicture()"><ion-icon name="camera"></ion-icon> Get a Photo</button>
+        </ion-item>
+
+
+
+
+        <!--end of actual photos grid  -->
+      </ion-col>
+
+
+    </ion-row>
+  </ion-grid>
 
   <ion-grid *ngFor="let header of metaTable.header">
 
@@ -23,6 +90,7 @@
       </ion-col>
       <ion-col>
         <button ion-button (click)="showActualPhotos()">Actual Photos</button>
+
       </ion-col>
     </ion-row>
 
